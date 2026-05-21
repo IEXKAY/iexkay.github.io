@@ -1,44 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ESKAY</title>
+    <!-- Google Fonts: Outfit (headings) and Inter (body text) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <div class="profile-header">
-        <div class="avatar">
-            <img src="imagen.jpg" alt="Foto de perfil">
+    <!-- Background glowing orbs for visual depth -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <main class="profile-container">
+        <div class="profile-card">
+            <header class="profile-header">
+                <div class="avatar-container">
+                    <div class="avatar">
+                        <img src="imagen.jpg" alt="Foto de perfil de ESKAY">
+                    </div>
+                    <div class="status-badge" title="En línea">
+                        <span class="status-dot"></span>
+                    </div>
+                </div>
+
+                <div class="profile-info">
+                    <h1 class="username-container">
+                        <span class="username">ESKAY</span>
+                        <span class="discriminator">#iexkay</span>
+                    </h1>
+                    <div class="status-text">
+                        <i class="fa-solid fa-circle-play status-icon"></i>
+                        <span>En línea</span>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://discord.gg/YrUz5fHPSd" target="_blank" class="social-icon discord"
+                            title="Discord" id="social-discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://www.instagram.com/iexkay/" target="_blank" class="social-icon instagram"
+                            title="Instagram" id="social-instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://github.com/IEXKAY" target="_blank" class="social-icon github" title="GitHub"
+                            id="social-github">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://iexkay.github.io/repox/" target="_blank" class="social-icon cloud"
+                            title="REPOX Cloud" id="social-repox">
+                            <i class="fa-solid fa-cloud"></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <hr class="divider">
+
+            <section class="section">
+                <h2 class="section-title">REPOX</h2>
+                <div class="project-box">
+                    <p class="project-description">Explora mi proyecto principal en la nube. Accede a herramientas web y
+                        utilidades desde un solo lugar.</p>
+                    <a href="https://iexkay.github.io/repox/" class="project-link" id="project-repox-btn">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span>Ir a REPOX</span>
+                    </a>
+                </div>
+            </section>
         </div>
-        <div class="profile-info">
-            <div class="username-container">
-                <span class="username">ESKAY</span>
-                <span class="discriminator">#iexkay</span>
-            </div>
-            <div class="status">
-                <div class="status-indicator"></div>
-                <span>En linea</span>
-            </div>
-            <div class="social-links">
-                <a href="https://discord.gg/YrUz5fHPSd" target="_blank" class="social-icon">
-                    <i class="fab fa-discord"></i>
-                </a>
-                <a href="https://www.instagram.com/iexkay/" target="_blank" class="social-icon">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://github.com/IEXKAY" target="_blank" class="social-icon">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="section">
-        <div class="section-title">Nota!</div>
-        <div class="about-me">
-            Soon gaming website :D
-        </div>
+    </main>
 </body>
+
 </html>

@@ -1,105 +1,425 @@
-/* Estilos generales */
+/* ==========================================
+   DISEÑO PREMIUM POR ANTIGRAVITY (ESKAY PORTFOLIO)
+   ========================================== */
+
+/* Variables de Diseño CSS */
+:root {
+    --bg-dark: #0f1115;
+    --card-bg: rgba(22, 25, 33, 0.65);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent-primary: #5865F2; /* Discord default */
+    --accent-cloud: #0ea5e9; /* Sky Blue for Repox */
+    --accent-instagram: #E1306C;
+    --success-green: #22c55e;
+    
+    /* Fuentes */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Sombras y Efectos */
+    --shadow-premium: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    --card-glow: 0 0 40px rgba(99, 102, 241, 0.1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset de estilos */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-body);
+}
+
+/* Scrollbar Personalizado */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Bloquea desplazamiento horizontal y vertical por defecto */
 }
 
 body {
-    background-color: #36393f;
-    color: #dcddde;
+    background-color: var(--bg-dark);
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
+    margin: 0;
 }
 
-/* Encabezado del perfil */
+/* Esferas de luz ambient (Glow) */
+.bg-glow {
+    position: fixed; /* Cambiado a fixed para no agrandar el viewport al animarse */
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.15;
+    animation: pulseGlow 10s infinite alternate;
+}
+
+/* Permitir scroll vertical solo si la pantalla es muy pequeña a lo alto */
+@media (max-height: 540px) {
+    html, body {
+        overflow-y: auto;
+    }
+    body {
+        align-items: flex-start;
+    }
+}
+
+.bg-glow-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #6366f1, #3b82f6);
+    top: 10%;
+    left: 15%;
+}
+
+.bg-glow-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #ec4899, #8b5cf6);
+    bottom: 10%;
+    right: 15%;
+    animation-delay: -5s;
+}
+
+@keyframes pulseGlow {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        transform: translate(30px, -20px) scale(1.1);
+    }
+}
+
+/* Contenedor Principal */
+.profile-container {
+    width: 100%;
+    max-width: 520px;
+    z-index: 10;
+    position: relative;
+}
+
+/* Tarjeta con Glassmorphism */
+.profile-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border-color);
+    border-radius: 28px;
+    padding: 35px;
+    box-shadow: var(--shadow-premium), var(--card-glow);
+    transition: var(--transition-smooth);
+}
+
+.profile-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: var(--shadow-premium), 0 0 50px rgba(99, 102, 241, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Encabezado del Perfil */
 .profile-header {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    gap: 25px;
+}
+
+/* Avatar con borde animado y estado */
+.avatar-container {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    flex-shrink: 0;
 }
 
 .avatar {
-    width: 80px;
-    height: 80px;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
-    margin-right: 20px;
-    overflow: hidden; /* Asegura que la imagen no sobresalga del círculo */
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transition: var(--transition-smooth);
 }
 
 .avatar img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ajusta la imagen para cubrir todo el espacio */
+    object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
+.avatar-container:hover .avatar img {
+    transform: scale(1.1);
+}
+
+.avatar-container:hover .avatar {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+}
+
+/* Indicador de estado en línea */
+.status-badge {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 24px;
+    height: 24px;
+    background-color: #1e2330;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--success-green);
+    position: relative;
+}
+
+.status-dot::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--success-green);
+    animation: statusPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes statusPulse {
+    0% {
+        transform: scale(0.9);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2.2);
+        opacity: 0;
+    }
+}
+
+/* Info de Perfil */
 .profile-info {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .username-container {
-    margin-bottom: 5px;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    flex-wrap: wrap;
 }
 
 .username {
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
 }
 
 .discriminator {
-    color: #72767d;
+    color: var(--text-muted);
     font-size: 16px;
+    font-weight: 500;
 }
 
-.status {
+.status-text {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
-    color: #b9bbbe;
-    font-size: 14px;
+    gap: 8px;
+    color: #a7f3d0; /* Soft green-ish text */
+    font-size: 13.5px;
+    font-weight: 500;
 }
 
-.status-indicator {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #3ba55c;
-    margin-right: 5px;
+.status-icon {
+    font-size: 12px;
 }
 
-/* Secciones */
+/* Redes Sociales / Links de Icono */
+.social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-secondary);
+    font-size: 20px;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Estilos individuales en Hover con efectos de sombra sutiles */
+.social-icon.discord:hover {
+    color: var(--accent-primary);
+    border-color: rgba(88, 101, 242, 0.4);
+    box-shadow: 0 4px 15px rgba(88, 101, 242, 0.2);
+}
+
+.social-icon.instagram:hover {
+    color: var(--accent-instagram);
+    border-color: rgba(225, 48, 108, 0.4);
+    box-shadow: 0 4px 15px rgba(225, 48, 108, 0.2);
+}
+
+.social-icon.github:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.social-icon.cloud:hover {
+    color: var(--accent-cloud);
+    border-color: rgba(14, 165, 233, 0.4);
+    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.2);
+}
+
+/* Divider line */
+.divider {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 25px 0;
+}
+
+/* Secciones de Contenido */
 .section {
-    background-color: #2f3136;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .section-title {
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-primary);
+    opacity: 0.8;
 }
 
-.about-me {
-    line-height: 1.5;
-    margin-bottom: 15px;
+/* Contenedor del proyecto REPOX */
+.project-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 20px;
+    transition: var(--transition-smooth);
 }
 
-/* Menús desplegables */
+.project-box:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(14, 165, 233, 0.25);
+}
+
+.project-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+/* Botón interactivo a REPOX */
+.project-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #0ea5e9, #2563eb);
+    border: none;
+    border-radius: 12px;
+    color: #ffffff;
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+    transition: var(--transition-smooth);
+}
+
+.project-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.45);
+    filter: brightness(1.08);
+}
+
+.project-link:active {
+    transform: translateY(0);
+}
+
+.project-link i {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.project-link:hover i {
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   ESTILOS ADICIONALES (Mantenimiento de compatibilidad)
+   ========================================== */
 .dropdown {
     margin-bottom: 15px;
 }
 
 .dropdown-title {
-    color: #b9bbbe;
+    color: var(--text-secondary);
     margin-bottom: 5px;
     cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+}
+
+.dropdown-title:hover {
+    color: var(--text-primary);
 }
 
 .dropdown-content {
@@ -107,7 +427,6 @@ body {
     margin-top: 5px;
 }
 
-/* Checkboxes */
 .checkbox-item {
     display: flex;
     align-items: center;
@@ -118,10 +437,10 @@ body {
     margin-right: 10px;
     width: 16px;
     height: 16px;
-    accent-color: #7289da;
+    accent-color: var(--accent-primary);
+    cursor: pointer;
 }
 
-/* Conexiones */
 .connections {
     margin-top: 15px;
 }
@@ -131,46 +450,56 @@ body {
     margin-bottom: 5px;
 }
 
-/* Redes sociales */
-.social-links {
-    display: flex;
-    gap: 15px;
-    margin-top: 15px;
+/* ==========================================
+   MEDIA QUERIES PARA DISPOSITIVOS MÓVILES
+   ========================================== */
+@media (max-width: 540px) {
+    body {
+        padding: 16px;
+    }
+
+    .profile-card {
+        padding: 24px;
+        border-radius: 24px;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .username-container {
+        justify-content: center;
+    }
+
+    .status-text {
+        justify-content: center;
+    }
+
+    .social-links {
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    .project-box {
+        padding: 16px;
+    }
+
+    .project-description {
+        font-size: 13.5px;
+        margin-bottom: 16px;
+        text-align: center;
+    }
 }
 
-.social-icon {
-    color: #dcddde;
-    font-size: 24px;
-    transition: transform 0.2s, color 0.2s;
-}
-
-.social-icon:hover {
-    transform: scale(1.1);
-}
-
-.fa-discord:hover {
-    color: #5865F2;
-}
-
-.fa-instagram:hover {
-    color: #E1306C;
-}
-
-.fa-github:hover {
-    color: #ffffff;
-}
-
-.fa-twitter:hover {
-    color: #1DA1F2;
-}
-
-.fa-youtube:hover {
-    color: #FF0000;
-}
-
-/* Línea divisoria */
-hr {
-    border: none;
-    border-top: 1px solid #40444b;
-    margin: 15px 0;
+@media (max-width: 360px) {
+    .username {
+        font-size: 22px;
+    }
+    
+    .avatar-container {
+        width: 80px;
+        height: 80px;
+    }
 }
